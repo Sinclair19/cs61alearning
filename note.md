@@ -66,6 +66,13 @@ Each clause is considered in order
 - Evaluate the header's expression
 - If it is a true value, execute the suite & skip the remaining clauses
 
+Conditional Expression
+- <consequent> if <predicate> else <alternative>
+  - Evaluate the <predicate> expression
+  - It it's a true value, the value of the whole expression is the value of the <consequent>
+  - Otherwise, the value of the whole expression is the value of the <alternative>
+
+
 ### 1.5.4 Conditional Statements
 - Conditional statements. 
     A conditional statement in Python consists of a series of headers and suites: 
@@ -78,8 +85,23 @@ Each clause is considered in order
   - True values
     - Anything else (True)
 
+logical operators
+- <left> `and` <right>
+  - Evalutae the subexpression <left>
+  - If the result is a false value v, then the expression evaluates to v
+  - Otherwise the expression evaluates to the value of the subexpression <right>
+- <left> `or` <right>
+  - Evaluate the subexpression <left>
+  - If the result is a true value v, then the expression evaluates to v
+  - Otherwise, the expression evaluates to the value of the subexpression <right>
+
+
 ### 1.5.5 Iteration
 In addition to selecting which statements to execute, control statements are used to express repetition. 
 
 ### 1.5.6 Testing
 `python3 -m doctest <python_source_file>`
+
+
+
+
