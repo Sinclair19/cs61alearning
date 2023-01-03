@@ -102,6 +102,54 @@ In addition to selecting which statements to execute, control statements are use
 ### 1.5.6 Testing
 `python3 -m doctest <python_source_file>`
 
+## 1.6 Higher-Order Functions
+Higher-order function: A function that tekes a function as an argument value or returns a function as a return value  
 
+Functions are first-class: Functions can be manipulated as values in our programming language  
+
+A function's domain is the set of all inputs it might possibly take as arguments  
+A function's range is the set of output values it might possibly return  
+A pure function's behavior is the relationship it creats between input and output  
+
+### 1.6.1 Functions as Arguments
+Using an identity function that returns its argument, we can also sum natural numbers using exactly the same summation function.  
+The summation function can also be called directly, without definining another function for a specific sequence.  
+
+### 1.6.2 Functions as General Methods
+`assert condition, 'AssertionError'`
+The assert keyword is used when debugging code.
+The assert keyword lets you test if a condition in your code returns True, if not, the program will raise an AssertionError.
+
+### 1.6.3 Defining Functions III: Nested Definitions
+call expression as operator expressions  
+Function defined within other function bodies are bound to names in a local frame  
+
+### 1.6.4 Functions as Returned Values
+An important feature of lexically scoped programming languages is that locally defined functions maintain their parent environment when they are returned.  
+
+### 1.6.6 Currying
+We can use higher-order functions to convert a function that takes multiple arguments into a chain of functions that each take a single argument.  
+More specifically, given a function f(x, y), we can define a function g such that g(x)(y) is equivalent to f(x, y).
+
+### 1.6.7 Lambda Expressions
+lambda  
+`lambad x: k` 
+`x input` 
+`k return value`  
+
+differs to def:
+  Only teh def statement gives the function an intrinsic name  
+
+### 1.6.8 Abstractions and First-Class Functions
+- The right of First-class elements 
+  - They may be bound to names.
+  - They may be passed as arguments to functions.
+  - They may be returned as the results of functions.
+  - They may be included in data structures.
+
+Python awards functions full first-class status, and the resulting gain in expressive power is enormous.  
+
+### 1.6.9 Function Decorators
+Python provides special syntax to apply higher-order functions as part of executing a def statement, called a decorator.  
 
 
