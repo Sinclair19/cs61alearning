@@ -67,10 +67,10 @@ Each clause is considered in order
 - If it is a true value, execute the suite & skip the remaining clauses
 
 Conditional Expression
-- <consequent> if <predicate> else <alternative>
-  - Evaluate the <predicate> expression
-  - It it's a true value, the value of the whole expression is the value of the <consequent>
-  - Otherwise, the value of the whole expression is the value of the <alternative>
+- `consequent` if `predicate` else `alternative`
+  - Evaluate the `predicate` expression
+  - It it's a true value, the value of the whole expression is the value of the `consequent`
+  - Otherwise, the value of the whole expression is the value of the `alternative`
 
 
 ### 1.5.4 Conditional Statements
@@ -86,14 +86,14 @@ Conditional Expression
     - Anything else (True)
 
 logical operators
-- <left> `and` <right>
-  - Evalutae the subexpression <left>
+- `left` `and` `right`
+  - Evalutae the subexpression `left`
   - If the result is a false value v, then the expression evaluates to v
-  - Otherwise the expression evaluates to the value of the subexpression <right>
-- <left> `or` <right>
-  - Evaluate the subexpression <left>
+  - Otherwise the expression evaluates to the value of the subexpression `right`
+- `left` `or` `right`
+  - Evaluate the subexpression `left`
   - If the result is a true value v, then the expression evaluates to v
-  - Otherwise, the expression evaluates to the value of the subexpression <right>
+  - Otherwise, the expression evaluates to the value of the subexpression `right`
 
 
 ### 1.5.5 Iteration
