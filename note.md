@@ -127,9 +127,58 @@ Function defined within other function bodies are bound to names in a local fram
 ### 1.6.4 Functions as Returned Values
 An important feature of lexically scoped programming languages is that locally defined functions maintain their parent environment when they are returned.  
 
+Every user-definded function has a parent frame (often global)  
+The parent of a function is the frame in which it was defined  
+Every local frame has a parent frame (ofent global)  
+The parent of a frame is the parent of the function called  
+
+- Draw an Environment Diagram
+  - When a funtcion is defined
+    - Create a function value : `func <name>(<formal parameters>) [parent=<parent>]`
+    - Bind `<name>` to the function value in the current frame
+  - When a function is called
+    - Add a local frame, titled with the `<name>` of the function being called
+    - Copy the parent of the function to the local frame: `[parent=<label>]`
+    - Bind the `<formal parameters>` to the arguments in the local frame
+    - Execute the body of the function in the environment that starts with the local frame
+
+```py
+def print_sums(n):
+  '''
+  a funtcion that add and print with a loop
+  >>> print_sums(1)(3)(5)
+  1
+  4
+  9
+  '''
+  print(n)
+  def next_sum(k):
+    return print_sums(n+k)
+  return next_sum
+```
+
 ### 1.6.6 Currying
 We can use higher-order functions to convert a function that takes multiple arguments into a chain of functions that each take a single argument.  
 More specifically, given a function f(x, y), we can define a function g such that g(x)(y) is equivalent to f(x, y).
+
+```py
+def curry2(f):
+  '''
+  equal to curry2 = lambda f: lambda x: lambda y: f(x, y)
+  >>> from operator import add
+  >>> m = curry2(add)
+  >>> add_three = m(3)
+  >>> add_three(2)
+  5
+  >>> add_three(2019)
+  2023
+  '''
+  def g(x):
+    def h(y):
+      return f(x,y)
+    return h
+  return g
+```
 
 ### 1.6.7 Lambda Expressions
 lambda  
