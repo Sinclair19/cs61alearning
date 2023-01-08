@@ -198,7 +198,28 @@ differs to def:
 
 Python awards functions full first-class status, and the resulting gain in expressive power is enormous.  
 
+Function Abstractions
+Naming tips
+- Names can be long if they help document your code
+- Names can be short if they represent generic quantities: couts, arbitrary functions, arguments to mathematical operations,etc
+  - n, k, i usually integers
+  - x, y, z usually real numbers
+  - f, g, h usually functions
+
 ### 1.6.9 Function Decorators
 Python provides special syntax to apply higher-order functions as part of executing a def statement, called a decorator.  
 
+`from ucb import trace`
+`@trace`
 
+```py
+@trace1  #Function decorator
+def triple(x): # Decorated function
+  return 3 * x
+```
+equal to
+```py
+def triple(x):
+  return 3 * x
+triple = trace1(triple)
+```
