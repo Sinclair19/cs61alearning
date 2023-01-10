@@ -223,3 +223,89 @@ def triple(x):
   return 3 * x
 triple = trace1(triple)
 ```
+
+## 1.7 Recursive Functions
+A function is called recursive if the body of the function calls the function itself, either directly or indirectly. 
+
+Recursion in Environment Diagrams
+- The same function fact is called multiple times
+- Different frames keep track of the different arguments in each call
+- What n evaluates to depends upon which is the current environment
+- Each call to fact solves a simpler problem than the last: samller n
+
+The Luhn Algorithm: check digit
+
+### 1.7.1 The Anatomy of Recursive Functions
+
+The Anatomy of a Recursive Function
+- The def statment header is similar to other functions
+- Conditional statments check for base cases
+- Base cases are evaluated without recursive calls
+- Recursive cases are evaluated with recursive calls
+
+### 1.7.2 Mutual Recursion
+When a recursive procedure is divided among two functions that call each other, the functions are said to be mutually recursive.  
+
+Mutually recursive functions can be turned into a single recursive function by breaking the abstraction boundary between the two functions.
+
+### 1.7.3 Printing in Recursive Functions
+```py
+def cascade(n):
+  '''print num in order
+  >>> cascade(123)
+  123
+  12
+  1
+  12
+  123
+  '''
+  if n < 10:
+    print(n)
+  else:
+    print(n)
+    cascade(n // 10)
+    print(n)
+```  
+- Each cascade frame is from a different call to cascade  
+- Until the Return value appears, that call has not completed  
+- Any statement can appear before or after the recursive call  
+
+### 1.7.4 Tree Recursion
+Another common pattern of computation is called tree recursion, in which a function calls itself more than once.   
+
+fib number
+```py
+dicfib = {0:0,1:1}
+def fib(n):
+    if n in dicfib.keys():
+        return dicfib[n]
+    else:
+        dicfib[n] = fib(n-2) + fib(n-1)
+        return dicfib[n]
+def fib2(n):
+    ''' tradition way '''
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib2(n-2) + fib2(n-1)
+```
+
+### 1.7.5 Example: Partitions
+The number of partitions of a positive integer n, using parts up to size m, is the number of ways in which n can be expressed as the sum of positive integer parts up to m in increasing order.  
+
+Counting Partitions
+```py
+def count_partitions(n, m):
+  if n == 0:
+    return 1
+  elif n < 0:
+    return 0
+  elif m == 0:
+    return 0
+  else:
+    with_m = count_partitions(n-m, m)
+    without_m = count_parations(n, m-1)
+    return with_m + without_m
+```
