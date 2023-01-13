@@ -309,3 +309,42 @@ def count_partitions(n, m):
     without_m = count_parations(n, m-1)
     return with_m + without_m
 ```
+
+# 2 Building Abstractions with Data
+
+## 2.1 Introduction
+
+### 2.1.1 Native Data Types
+int, float, bool etc
+
+## 2.2 Data Abstraction
+
+### 2.2.1 Example: Rational Numbers
+A rational number is a ratio of integers, and rational numbers constitute an important sub-class of real numbers.   
+- rational(n, d) returns the rational number with numerator n and denominator d.
+- numer(x) returns the numerator of the rational number x.
+- denom(x) returns the denominator of the rational number x.
+
+### 2.2.2 Pairs
+Two-element lists are not the only method of representing pairs in Python.  
+Any way of bundling two values together into one can be considered a pair.  
+Lists are a common method to do so.
+
+### 2.2.3 Abstraction Barriers
+For rational numbers, different parts of the program manipulate rational numbers using different operations, as described in this table.  
+
+
+|Parts of the program that...|Treat rationals as...	|	Using only...|
+|----|----|----|
+|Use rational numbers to perform computation|whole data values|add_rational, mul_rational, rationals_are_equal, print_rational|
+|Create rationals or implement rational operations|numerators and denominators|rational, numer, denom|
+|Implement selectors and constructor for rationals|two-element lists|list literals and element selection|
+
+### 2.2.4 The Properties of Data
+
+
+string
+-representing data
+- representing language
+- representing programs:
+  - exec('')
