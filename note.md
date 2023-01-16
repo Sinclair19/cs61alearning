@@ -318,6 +318,7 @@ def count_partitions(n, m):
 int, float, bool etc
 
 ## 2.2 Data Abstraction
+Date abstractionL: A methodology by which functions enforce  an abstraction barrier between representation and use
 
 ### 2.2.1 Example: Rational Numbers
 A rational number is a ratio of integers, and rational numbers constitute an important sub-class of real numbers.   
@@ -329,6 +330,11 @@ A rational number is a ratio of integers, and rational numbers constitute an imp
 Two-element lists are not the only method of representing pairs in Python.  
 Any way of bundling two values together into one can be considered a pair.  
 Lists are a common method to do so.
+
+```py
+from operator import getitem
+getitem(pair, 0)
+```
 
 ### 2.2.3 Abstraction Barriers
 For rational numbers, different parts of the program manipulate rational numbers using different operations, as described in this table.  
@@ -342,9 +348,57 @@ For rational numbers, different parts of the program manipulate rational numbers
 
 ### 2.2.4 The Properties of Data
 
+## 2.3 Sequences
+A sequence is an ordered collection of values.  
+Sequences' common bahavior  
+- Length. A sequence has a finite length. An empty sequence has length 0.
+- Element selection. A sequence has an element corresponding to any non-negative integer index less than its length, starting at 0 for the first element.
 
-string
--representing data
+### 2.3.1 Lists
+A list value is a sequence that can have arbitrary length.   
+
+### 2.3.2 Sequence Iteration
+A for statement consists of a single clause with the form:  
+
+for `<name>` in `<expression>`:
+    `<suite>`
+
+A for statement is executed by the following procedure:  
+- Evaluate the header `<expression>`, which must yield an iterable value.
+- For each element value in that iterable value, in order:
+  - Bind `<name>` to that value in the current frame.
+  - Execute the `<suite>`.
+
+- Sequence unpacking:  
+A common pattern in programs is to have a sequence of elements that are themselves sequences, but all of a fixed length.   
+
+### 2.3.3 Sequence Processing
+- List Comprehensions
+- Aggregation
+  - A third common pattern in sequence processing is to aggregate all values in a sequence into a single value. The built-in functions sum, min, and max are all examples of aggregation functions.  
+- Higher-Order Functions
+  - The common patterns we have observed in sequence processing can be expressed using higher-order functions.
+- Conventional Names
+
+### 2.3.4 Sequence Abstraction
+- Membership. 
+  - A value can be tested for membership in a sequence. Python has two operators in and not in that evaluate to True or False depending on whether an element appears in a sequence.
+- Slicing
+  - Sequences contain smaller sequences within them. 
+
+### 2.3.5 Strings
+- representing data
 - representing language
 - representing programs:
   - exec('')
+
+- Membership
+- Multiline Literals (''')
+- String Coercion
+- Further reading
+
+Dictionary
+Dictionary keys have two restrictions
+- A key of a dictionary cannot be a list or a dictionary (or any mutable type)
+- Two keys cannot be equal; There can be at most one value for a given key
+
