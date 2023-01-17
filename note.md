@@ -385,6 +385,15 @@ A common pattern in programs is to have a sequence of elements that are themselv
   - A value can be tested for membership in a sequence. Python has two operators in and not in that evaluate to True or False depending on whether an element appears in a sequence.
 - Slicing
   - Sequences contain smaller sequences within them. 
+  - Slicing creates new values
+
+Sequence Aggregation
+- `sum(iterable[, start])` -> value
+  - reutrn the sum of an iterable of numbers (Not strings) plus the value of parameter 'start' (which is defults to 0). When the iterable is empty, return start
+- `max(iterable[, key = func])` -> value  `max(a, b, c, ...[, key = func])` -> value
+  - with a singel iterable argument, return its largest item. With two or more arguments, return the largest argument
+- `all(iterable)` -> bool
+  - return True if bool(x) is True for all values x in the iterable. If the iterable is empty, return True
 
 ### 2.3.5 Strings
 - representing data
@@ -398,7 +407,74 @@ A common pattern in programs is to have a sequence of elements that are themselv
 - Further reading
 
 Dictionary
-Dictionary keys have two restrictions
-- A key of a dictionary cannot be a list or a dictionary (or any mutable type)
-- Two keys cannot be equal; There can be at most one value for a given key
+- Dictionary keys have two restrictions
+  - A key of a dictionary cannot be a list or a dictionary (or any mutable type)
+  - Two keys cannot be equal; There can be at most one value for a given key
 
+
+### 2.3.6 Trees
+Nesting lists within lists can introduce complexity. The tree is a fundamental data abstraction that imposes regularity on how hierarchical values are structured and manipulated.  
+
+A tree has a root label and a sequence of branches.  
+Each branch of a tree is a tree.  
+A tree with no branches is called a leaf.  
+Any tree contained within a tree is called a sub-tree of that tree (such as a branch of a branch).  
+The root of each sub-tree of a tree is called a node in that tree.
+
+The data abstraction for a tree consists of the constructor `tree` and the selectors `label` and `branches`. We begin with a simplified version.
+
+```py
+def tree(root_label, branches=[]):
+    for branch in branches:
+      assert is_tree(branch), 'branches must be trees'
+    return [root_label] + list(branches)
+
+def label(tree):
+    return tree[0]
+
+def branches(tree):
+    return tree[1:]
+```
+The `is_tree` function is applied in the tree constructor to verify that all branches are well-formed.  
+```py
+def is_tree(tree):
+    if type(tree) != list or len(tree) < 1:
+        return False
+    for branch in branches(tree):
+        if not is_tree(branch):
+            return False
+    return True
+```
+
+The `is_leaf` function checks whether or not a tree has branches.  
+
+```py
+def is_leaf(tree):
+    return not branches(tree)
+```
+
+Tree-recursive functions are also used to process trees. For example, the count_leaves function counts the leaves of a tree.  
+
+```py
+def count_leaves(tree):
+    if is_leaf(tree):
+        return 1
+    else:
+        branch_counts = [count_leaves(b) for b in branches(tree)]
+        return sum(branch_counts)
+```
+
+Trees can also be used to represent the partitions of an integer. A partition tree for n using parts up to size m is a binary (two branch) tree that represents the choices taken during computation.  
+
+```py
+def partition_tree(n, m):
+    """Return a partition tree of n using parts of up to m."""
+    if n == 0:
+        return tree(True)
+    elif n < 0 or m == 0:
+        return tree(False)
+    else:
+        left = partition_tree(n-m, m)
+        right = partition_tree(n, m-1)
+        return tree(m, [left, right])
+```
