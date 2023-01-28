@@ -563,3 +563,9 @@ def join_link(s, separator):
 - Binary Numbers
   - n-bit unsigned binary numbers: 0 - 2**n -1
   - n-bit signed binary numbers : -2**(n-1) - 2**(n-1)-1
+- Designing Circuits
+  - build truth-table for all possible input/output values
+  - build sub-expressions with and/not for each output column
+  - combine two at a time, sub-expressions with an or
+  - draw circuit diagram
+  - 
