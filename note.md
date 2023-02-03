@@ -617,3 +617,40 @@ A list of key-value pairs can be converted into a dictionary by calling the dict
 - Dictionaries do have some restrictions:
   - A key of a dictionary cannot be or contain a mutable value.
   - There can be at most one value for a given key.
+
+### 2.4.4 Local State
+Lists and dictionaries have local state: they are changing values that have some particular contents at any point in the execution of a program. The word "state" implies an evolving process in which that state may change.  
+
+Execution rule for assignment statements
+- Evaluate all expressions right of =, from left to right
+- Bind the names on the left to the resulting values in the current frame  
+
+Non local assignment & persistent local state  
+`nonlocal <name>`  
+
+Effect: Future assignments to that name change its pre-existing binding in the first non-local frame of the current environment in which that name is bond  
+
+Form the Python 3 language reference
+- Names listed in nonlocal statement must refer to pre-existing bingdings in an enclosing scope.
+- Names listed in a nonlocal statement must not collide with pre-existing bingdings in the local scope
+
+### 2.4.5 The Benefits of Non-Local Assignment
+In particular, non-local assignment has given us the ability to maintain some state that is local to a function, but evolves over successive calls to that function.   
+
+### 2.4.6 The Cost of Non-Local Assignment
+**Sameness and change**. These subtleties arise because, by introducing non-pure functions that change the non-local environment, we have changed the nature of expressions.  
+An expression that contains only pure function calls is `referentially transparent`; its value does not change if we substitute one of its subexpression with the value of that subexpression.  
+
+Referential Transparency, Lost
+- Expressions are referentially transparent if substituting an expression with its value does not change the meaning of a program
+- Mutation operations violate the condition of referentail transparency because they do more than just return a value; they change the environment
+
+### 2.4.7 Implementing Lists and Dictionaries
+
+Mutable Values & Persistent Local State
+Mutable values can be changed without a nonlocal statement
+
+### 2.4.8 Dispatch Dictionaries
+
+### 2.4.9 Propagating Constraints
+Mutable data allows us to simulate systems with change, but also allows us to build new kinds of abstractions.  
