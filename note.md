@@ -654,3 +654,53 @@ Mutable values can be changed without a nonlocal statement
 
 ### 2.4.9 Propagating Constraints
 Mutable data allows us to simulate systems with change, but also allows us to build new kinds of abstractions.  
+
+## 4.2 Implicit Sequences
+
+### 4.2.1 Iterators
+A container can provide an iterator that provides access to its elements in some order  
+
+`iter(iterable)`: Return an iterator over the elements of an iterable value  
+
+`next(iterator)`: Return the next element in an iterator
+
+### 4.2.2 Iterables
+Any value that can produce iterators is called an iterable value.  
+
+Dictionary iterator
+A dictionary, its keys, its values, and its items are all iterable values  
+- The order of items in a dictionary is the order in which they were added
+- Historically, items appeared in an arbitrary order (Python 3.5 and earlier)
+
+### 4.2.3 Built-in Iterators
+
+Built-in Functions for iteration  
+- Many built-in Python sequence operations return iterators that compute results lazily  
+`map(func, iterable)`: Iterate over func(x) for x in iterable  
+`filter(func, iterable)`: Iterate over x in iterable if func(x)  
+`zip(first_iter, second_iter)`: Iterate over co-indexed (x, y ) pairs  
+`reversed(sequence)`: Iterate over x in a sequence in reverse order 
+
+- To view the contents of an iterator, place the resulting elements into a container  
+`list(iterable)`: Create a list containing all x in iterable  
+`tuple(iterable)`: Create a tuple containing all x in iterable  
+`sorted(iterable)`: Create a sorted list containing all x in iterable  
+
+### 4.2.4 For Statements
+After iter reach end, the iter cann't be used to track form start to end
+
+### 4.2.5 Generators and Yield Statements
+
+Generators  
+- A generator function is a function that yields values instead of returning them  
+- A normal function returns once; a generator function can yield multiple times  
+- A generator is an iterator created automatically by calling a generator function  
+- When a generator function is called, it returns a generator that iterates over its yields  
+
+### 4.2.6 Iterable Interface
+
+### 4.2.7 Creating Iterables with Yield
+Generators & Iterators  
+- A yield form statement yields all values from an iterator or iterable
+
+### 4.2.8 Iterator Interface
