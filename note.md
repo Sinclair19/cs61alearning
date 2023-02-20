@@ -704,3 +704,61 @@ Generators & Iterators
 - A yield form statement yields all values from an iterator or iterable
 
 ### 4.2.8 Iterator Interface
+
+## 2.5 Object-Oriented Programming
+
+### 2.5.1 Objects and Classes
+A class combines and abstracts data and functions  
+An object is an instantiation of a class  
+
+A method for organizing modular programs  
+- Abstraction barriers
+- Bundling together information and related behavior
+  
+A metaphor for computation using distributed state  
+- Each object has its own local state
+- Each object also knows how to manage its own local state, based on method calls
+- Method calls are messages passed between objects
+- Several objects may all be instances of a common type
+- Different types may relate to each other
+
+### 2.5.2 Defining Classes
+
+The Class Statement  
+```python
+class <name>:
+    <suite>
+```
+
+Object Construction  
+
+When a class is called:
+- A new instance of that class is created
+- The `__init__` method of the class is called with the new object as its first argument (named self), along with any additional arguments provided in the call expression
+
+
+Methods
+
+Dot Expressions
+- Objects receive messages via dot notation
+- Dot notation accesses attributes of the instance or its class
+
+### 2.5.3 Message Passing and Dot Expressions
+
+Objects also have named local state values (the instance attributes), but that state can be accessed and manipulated using dot notation, without having to employ nonlocal statements in the implementation.  
+
+`<expression>. <name>`
+- The `expression` can be any valid Python expression
+- The `name` must be a simple name
+- Evaluates to the value of the attribute looked up by `name` in the object that is the value of the `expression`
+
+### 2.5.4 Class Attributes
+Some attribute values are shared across all objects of a given class. Such attributes are associated with the class itself, rather than any individual instance of the class.
+
+
+Looking Up Attributes by Name
+To evaluate a dot expression:
+- Evaluate the `expression` to the left of the dot, which yields the object of the dot expression
+- `name` is matched against the instance attributes of that object; If an attribute with that name exists, its value is returned
+- If not, `name` is looked up in the calss, which  yields a class attribute value
+- That value is returned unless it is a function, in which case a bound method is returned instead
