@@ -747,18 +747,72 @@ Dot Expressions
 
 Objects also have named local state values (the instance attributes), but that state can be accessed and manipulated using dot notation, without having to employ nonlocal statements in the implementation.  
 
-`<expression>. <name>`
-- The `expression` can be any valid Python expression
-- The `name` must be a simple name
-- Evaluates to the value of the attribute looked up by `name` in the object that is the value of the `expression`
+`<expression> . <name>`  
+To evaluate a dot expression:
+- Evaluate the `<expression>` to the left of the dot, which yields the object of the dot expression.  
+- `<name>` is matched against the instance attributes of that object; if an attribute with that name exists, its value is returned  
+- if not, `<name>` is looked up in the class, which yields a class attribute value  
+- That value is returned unless it is a function, in which case a bound method is returned instead  
+
+All objects have attributes, which are name-value pairs  
+Classes are objects too, so they have attributes  
+Instance attribute: attribute of an instance  
+Class attribute: attribute of the class of an instance  
+
+#### Python object system:
+- Functions are objects  
+- Bount mothods are also objects: a function that has its first parameter "self" alreday bound to an instance  
+- Dot expressions evaluate to bound methods for class attributes that are functions  
+`<instance>.<method_name>`
 
 ### 2.5.4 Class Attributes
 Some attribute values are shared across all objects of a given class. Such attributes are associated with the class itself, rather than any individual instance of the class.
 
 
-Looking Up Attributes by Name
+#### Looking Up Attributes by Name
 To evaluate a dot expression:
 - Evaluate the `expression` to the left of the dot, which yields the object of the dot expression
 - `name` is matched against the instance attributes of that object; If an attribute with that name exists, its value is returned
 - If not, `name` is looked up in the calss, which  yields a class attribute value
 - That value is returned unless it is a function, in which case a bound method is returned instead
+
+
+#### Assignment to Attributes
+Assignment statements with a dot expression on their left-hand side affect attributes for the object fo that dot expression
+- If the object is an instance, then assignment sets an instance attribute
+- If the object is a class, then assignment sets a class attribute
+
+### 2.5.5 Inheritance
+
+#### Inheritance
+- Inheritance is a method for relating classes together  
+- A common use: Two similar classes differ in their degree of specialization 
+- The specialized class may have the same attributes as the general class, along with some special-case behavior  
+
+#### Inheritance and Composition
+- Inheritance is best for representing is-a relationships  
+- Composition is best for representing has-a relationships  
+
+### 2.5.6   Using Inheritance
+
+```py
+class <name>(<base class>):
+    <suite>
+```
+
+- Conceptlually, the new subclass "shares" attributes with its base class
+- The subclass may override certain inherited attributes  
+- Using inheritance, we implement a subclass by specifying its differences from the base class  
+
+Looking Up Attribute Names on Classes
+- If it names an attribute in the class, return the attribute value
+- Otherwise, look up the name in the base class, if there is one
+
+### 2.5.8 The Role of Objects
+
+Object-Oriented Design
+Designing for Inheritance
+- Don't repeat yourself; use existing implementations
+- Attributes that have been overridden are still accessible via class objects
+- Look up attributes on instances whenever possible
+
