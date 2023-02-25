@@ -816,3 +816,47 @@ Designing for Inheritance
 - Attributes that have been overridden are still accessible via class objects
 - Look up attributes on instances whenever possible
 
+## 2.7 Object Abstraction
+
+### 2.7.1 String Conversion
+String Representations
+In python, all objects produce two string representations:
+- The `str` is legible to humans
+- The `repr` is legible to the Python interpreter
+
+The `str` and `repr` strings are often the same, but not always
+
+The `repr` function returns a Python expression (a string) that evaluates to an equal object
+
+The result of calling `str` on the value of an expression is what Python prints using `print` function
+
+Polymorphic Functions
+A function that applies to many (poly) different forms (morph) of data
+`str` and `repr` are both polymorphic; they apply to any object
+`repr` invokes a zero-argument method `__repr__` on its argument
+`str` invokes a zero-argument method `__str__` on its argument
+
+### 2.7.2 Special Methods
+
+Special Method Names in Python
+Ceratin names are special because they have built-in behavior  
+These names always start and end with two underscores  
+
+### 2.7.3 Multiple Representations
+
+Interfaces
+- Message passing: Objects interact by looking up attributes on each other (passing messages)
+  - The attribute look-up rules allow different data types to respond to the same message
+- A sharde message (attribute name) that elicits similar behavior from different object classes is a powerful method of abstraction
+  - A interfaces is a set of shared messages, along with a specification of what they mean 
+
+Properties. 
+The requirement that two or more attribute values maintain a fixed relationship with each other is a new problem.   
+One solution is to store attribute values for only one representation and compute the other representation whenever it is needed.  
+Python has a simple feature for computing attributes on the fly from zero-argument functions.   
+The `@property` decorator allows functions to be called without call expression syntax (parentheses following an expression).   
+
+
+### 2.7.4 Generic Functions
+Type dispatching. One way to implement cross-type operations is to select behavior based on the types of the arguments to a function or method.   
+The built-in function `isinstance` takes an object and a class. It returns true if the object has a class that either is or inherits from the given class.
