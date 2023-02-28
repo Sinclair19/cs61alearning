@@ -860,3 +860,31 @@ The `@property` decorator allows functions to be called without call expression 
 ### 2.7.4 Generic Functions
 Type dispatching. One way to implement cross-type operations is to select behavior based on the types of the arguments to a function or method.   
 The built-in function `isinstance` takes an object and a class. It returns true if the object has a class that either is or inherits from the given class.
+
+## 2.9 Recursive Objects
+
+### 2.9.1 Linked List Class
+Linked Lists
+A linked list is either empty or a first value and the rest of the linked list  
+The empty list is a special case of a linked list that has no first element or rest   
+
+
+- Linked List Processing
+Range, Map, and Filter for Linked Lists
+
+Recursive Construction  
+We follow the same recursive analysis of the problem as we did while counting: partitioning n using integers up to m involves either  
+
+- partitioning `n-m` using integers up to `m`, or
+- partitioning `n` using integers up to `m-1`.
+
+For base cases, we find that 0 has an empty partition, while partitioning a negative integer or using parts smaller than 1 is impossible.  
+
+Linked Lists Mutation
+
+### 2.9.2 Tree Class
+Trees can also be represented by instances of user-defined classes, rather than nested instances of built-in sequence types. A tree is any data structure that has as an attribute a sequence of branches that are also trees.
+
+### 2.9.3 Sets
+In addition to the list, tuple, and dictionary, Python has a fourth built-in container type called a set  
+Set literals follow the mathematical notation of elements enclosed in braces  Duplicate elements are removed upon construction  
