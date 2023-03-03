@@ -861,6 +861,71 @@ The `@property` decorator allows functions to be called without call expression 
 Type dispatching. One way to implement cross-type operations is to select behavior based on the types of the arguments to a function or method.   
 The built-in function `isinstance` takes an object and a class. It returns true if the object has a class that either is or inherits from the given class.
 
+## 2.8 Efficiency
+
+### 2.8.1 Measuring Efficiency
+```python
+def count(f):
+    def counted(*args):
+        counted.call_count += 1
+        return f(*args)
+    counted.call_count = 0
+    return counted
+```
+```python
+def count_frames(f):
+    def counted(*args):
+        counted.open_count += 1
+        counted.max_count = max(counted.max_count, counted.open_count)
+        result = f(*args)
+        counted.open_count -= 1
+        return result
+    counted.open_count = 0
+    counted.max_count = 0
+    return counted
+```
+  
+### 2.8.2 Memoization
+```python
+def memo(f):
+    cache = {}
+    def memoized(n):
+        if n not in cache:
+            cache[n] = f(n)
+        return cache[n]
+    return memoized
+```
+
+### 2.8.3 Orders of Growth
+
+Quadratic Time
+Functions that process all pairs of values in a sequence of length n take quadratic time  
+
+### 2.8.5 Growth Categories
+
+Common Orders of Growth
+- Exponential growth
+  - recursive fib
+  - Incrementing n multiplies time by a constant
+- Quadratic growth
+  - overlap
+  - Incrementing n increases time by n times a constant
+- Linear growth
+  - slow exp
+  - Incrementing n increases time by a constant
+- Logarithmic growth
+  - exp_fast
+  - Doubling n only increments time by a constant
+- Constant growth
+  - Increasing n doesn't affect time
+
+Order of Growth Notation
+
+The consumption of Space
+Active environments:
+- Environments for any function calls currently being evaluated
+- Parent environments of functions named in active environments
+
 ## 2.9 Recursive Objects
 
 ### 2.9.1 Linked List Class
