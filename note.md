@@ -953,3 +953,35 @@ Trees can also be represented by instances of user-defined classes, rather than 
 ### 2.9.3 Sets
 In addition to the list, tuple, and dictionary, Python has a fourth built-in container type called a set  
 Set literals follow the mathematical notation of elements enclosed in braces  Duplicate elements are removed upon construction  
+
+one more built-in Python container type
+- Set literals are enclosed in braces
+- Duplicate elements are removed on construction
+- Sets have arbitrary order
+
+## extend knowledge
+
+Modular Design
+Separation of Concerns
+A design principle: Isolate different parts of a program that address different concerns  
+A modular component canbe developed and tested independently  
+
+Linear-Time intersection of Sorted Lists
+
+Given two `sorted` lists with no repeats, return the number of elements that appear in both  
+
+```python
+def fast_overlap(s, t):
+    '''return the overlap between sorted S and sorted T.
+    '''
+    i, j, count = 0, 0, 0
+    while i < len(s) and j < len(t):
+        if s[i] == t[j]:
+          count, i, j = count + 1, i+1, j+1
+        elif s[i] < t[j]:
+          i = i + 1
+        else:
+          j = j + 1
+        return count
+```
+
