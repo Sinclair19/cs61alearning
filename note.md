@@ -985,3 +985,7 @@ def fast_overlap(s, t):
         return count
 ```
 
+Land Owners
+Instance attributes are found before class attributes  
+class attributes are inherited
+
