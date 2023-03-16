@@ -989,3 +989,42 @@ Land Owners
 Instance attributes are found before class attributes  
 class attributes are inherited
 
+# 3 Interpreting Computer Programs
+
+## 3.1 Introduction
+
+### 3.1.1 Programming Languages
+Scheme
+
+## 3.2 Functional Programming
+
+### 3.2.1 Expressions
+Scheme Fundamentals
+expressions
+- Primitive expressions
+- Cominations
+
+Numbers are self-evaluating: symbols are bound to values
+Call expressions include an operator and `0` or more operands in parentheses
+
+### 3.2.2 Definitions
+
+Special Forms
+A combination that is not a call expression is a special form
+- If expression: `(if <predicate> <consequent> <alternative>)`
+- And and or: `(and <e1> <e2> ...)` `(or <e1> <e2>)`
+- Bingding symbols `(define <symblo> <expression>)`
+- New procedures `(define (<symbol> <formal parameters>) <body>)`
+
+Lambda Expressions
+(lambda (`<formal-parameters>`) `<body>`)
+
+### 3.2.3 Compound values
+Pairs are built into the Scheme language. For historical reasons, pairs are created with the `cons` built-in function, and the elements of a pair are accessed with `car` and `cdr`
+
+### 3.2.4 Symbolic Data
+All the compound data objects we have used so far were constructed ultimately from numbers. One of Scheme's strengths is working with arbitrary symbols as data.
+
+### 3.2.5 Turtle graphics
+The implementation of Scheme that serves as a companion to this text includes Turtle graphics, an illustrating environment developed as part of the Logo language (another Lisp dialect).  
+This turtle begins in the center of a canvas, moves and turns based on procedures, and draws lines behind it as it moves.
