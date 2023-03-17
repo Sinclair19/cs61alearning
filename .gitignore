@@ -5,3 +5,4 @@ __pycache__/
 ok
 *.ok
 __init__.py
+/lab/lab10/editor/
