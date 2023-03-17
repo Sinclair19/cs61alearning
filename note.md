@@ -1028,3 +1028,36 @@ All the compound data objects we have used so far were constructed ultimately fr
 ### 3.2.5 Turtle graphics
 The implementation of Scheme that serves as a companion to this text includes Turtle graphics, an illustrating environment developed as part of the Logo language (another Lisp dialect).  
 This turtle begins in the center of a canvas, moves and turns based on procedures, and draws lines behind it as it moves.
+
+## Scheme knowledge
+Cond & Begin
+The cond special form that behaves like if-elif-else statements in Python  
+The begin special form combines multiple expressions into one expression  
+
+Let Expressions
+The let special form binds symbols to values temporarily just for one expression
+
+Lists
+- cons: Two-argument procedure that creates a linked list
+- car: Procedure that returns the first element of a list
+- cdr: Procedure that returns the rest of a list
+- nil: The empty list
+
+Quotation is used to refer to symbols directly in Lisp
+
+A Scheme Expression is a Scheme List
+Scheme programs consist of expressions, which can be:
+- Primitive expressions
+- Combinations
+
+The build-in Scheme list data structure (which is a linked list) can represent combinations
+
+Quasiquotation
+There are two ways to quote an expression
+- quote `'(a b) => (a b)`
+- quasiquote ``(a,b) => (a b)`
+different because parts of a quasiquoted expression canbe unquoted with `,`
+- quote `'(a ,(+ b 1)) => (a (unquote (+ b 1)))`
+- quasiquote ``(a ,(+ b 1)) => (a 5)`
+
+Quasiquotation is particularly convenient for generating Scheme expressions
