@@ -1061,3 +1061,41 @@ different because parts of a quasiquoted expression canbe unquoted with `,`
 - quasiquote ``(a ,(+ b 1)) => (a 5)`
 
 Quasiquotation is particularly convenient for generating Scheme expressions
+
+
+## 3.3 Exceptions
+- Exceptions
+Unhandled exceptions will cause Python to halt execution and print a stack trace  
+Exceptions are objects. They have classes with constructors
+They enable non-local continuations of control
+
+- Assert Statements
+Assert statements raise an exception of type AssertionError
+`assert <exression>, <string>`  
+Assertions are designed to be used liberally.  
+They can be ignored to increase efficiency by running Python with the "-O" flag. "O" stans for optimized  
+Whether assertions are enabled is governed by a bool `__debug__`  
+
+- Raise Statements  
+Exceptions are raised with a raise statement
+`raise <expression>`
+built in error type  
+`TypeError` 
+`NameError`
+`keyError`
+`RuntimeError`
+
+- Try Statements
+Try statements handle exceptions
+```py
+try:
+    <try suite>
+except <exception class> as <name>:
+    <except suite>
+```
+Execution rule:
+- The `<try suite>` is executed first
+- If, during the course of executing the `<try suite>`, an exception is raised that is not handled otherwise,  and If the class of the exception inherits from `<exception class>`,  then the `<except suite>` is executed, with `<name>` bound to the exception  
+
+### 3.3.1 Exception Objects
+Exception objects themselves can have attributes, such as the error message stated in an assert statement and information about where in the course of execution the exception was raised.  
