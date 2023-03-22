@@ -1099,3 +1099,110 @@ Execution rule:
 
 ### 3.3.1 Exception Objects
 Exception objects themselves can have attributes, such as the error message stated in an assert statement and information about where in the course of execution the exception was raised.  
+
+
+## 3.4 Interpreters for Languages with Combination
+
+Programming Languages
+A computer typically executes programs written in many different programming languages
+Machine languages: statements are interpreted by the hardware itself
+- aA fixed set of instructions invoke operations implemented by the circuitry of the central processing unit
+- Operations refer to specific hardware memory addresses; no abstarction mechanisms
+
+High-level languages: statements & expressions are interpreted by another program or complied(translated) into another language
+- Provide means of abstracion such as naming, function definition, and objects
+- Abstract away system datails to be independent of hardware and operating system
+
+A programming languages has:
+- Syntax: The legal statements and expressions in the language
+- Semantics: The execution/evaluation rule for those statements and expressions
+
+To create a new programming language, you either need a:
+- Specification: A document describe the precise syntax and semantics of the language
+- Canonical Implementation: An interpreter or complier for the language
+
+### 3.4.1 A Scheme-Syntax Calculator
+
+### 3.4.2 Expression Trees
+Calculator  
+The Pair class  
+The Pair class represents Scheme pairs and lists. A list is a pair whose second element is either a list or nil.
+
+Handling Exceptions
+An interactive interpreter prints information about each error  
+A well-designed interactive interpreter should not halt completely on an error, so that the user has an opportunity to try again in the current environment
+
+### 3.4.3 Parsing Expressions
+Parsing is the process of generating expression trees from raw text input  
+- Lexical analysis
+- Syntactic analysis
+
+Parsing
+A parser takes text and returns an expression
+
+Recursive Syntactic Analysis
+A predictive recursive descent parse inspects only k tokens to decide how to proceed
+
+Syntactivc Analysis
+Syntactic analysis indentifies the hierarchical structure of an expression, which may be nested  
+Each call to scheme_read consumes the input tokens for exactly one expression  
+
+- Base case: symbols and numbers
+- Recursive call: scheme_read sub-expressions and combine them
+
+### 3.4.4 Calculator Evaluation
+The scalc module implements an evaluator for the Calculator language. The calc_eval function takes an expression as an argument and returns its value  
+```py
+def calc_eval(exp):
+    """Evaluate a Calculator expression."""
+    if type(exp) in (int, float):
+        return simplify(exp)
+    elif isinstance(exp, Pair):
+        arguments = exp.second.map(calc_eval)
+        return simplify(calc_apply(exp.first, arguments))
+    else:
+        raise TypeError(exp + ' is not a number or call expression')
+```
+```py
+def calc_apply(operator, args):
+    """Apply the named operator to a list of args."""
+    if not isinstance(operator, str):
+        raise TypeError(str(operator) + ' is not a symbol')
+    if operator == '+':
+        return reduce(add, args, 0)
+    elif operator == '-':
+        if len(args) == 0:
+            raise TypeError(operator + ' requires at least 1 argument')
+        elif len(args) == 1:
+            return -args.first
+        else:
+            return reduce(sub, args.second, args.first)
+    elif operator == '*':
+        return reduce(mul, args, 1)
+    elif operator == '/':
+        if len(args) == 0:
+            raise TypeError(operator + ' requires at least 1 argument')
+        elif len(args) == 1:
+            return 1/args.first
+        else:
+            return reduce(truediv, args.second, args.first)
+    else:
+        raise TypeError(operator + ' is an unknown operator')
+```
+
+- Read-eval-print loops
+```py
+def read_eval_print_loop():
+    """Run a read-eval-print loop for calculator."""
+    while True:
+        try:
+            src = buffer_input()
+            while src.more_on_line:
+                expression = scheme_read(src)
+                print(calc_eval(expression))
+        except (SyntaxError, TypeError, ValueError, ZeroDivisionError) as err:
+            print(type(err).__name__ + ':', err)
+        except (KeyboardInterrupt, EOFError):  # <Control>-D, etc.
+            print('Calculation completed.')
+            return
+```
