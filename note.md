@@ -1206,3 +1206,43 @@ def read_eval_print_loop():
             print('Calculation completed.')
             return
 ```
+
+## 3.5 Interpreters for Languages with Abstraction
+
+### 3.5.1 Structure
+Interpreters  
+
+The Structure of an Interpreter
+- Eval (requires an environment for symbol lookup)
+  - Base cases
+    - Primitive values (numbers)
+    - Look up values bound to symbols
+  - Recursive calls
+    - Eval(operator, operands) of call expressions
+    - Apply(procedure, arguments)
+    - Eval(sub-expressions) of specail forms
+- Apply (Creates a new environment each time a user-defined procedure is applied)
+  - Base cases
+    - Built-in primitive procedures
+  - Recursive calls
+    - Eval(body) of user-defined procedures
+
+Scheme Evaluation  
+The scheme_eval function dispatches on expression form:
+- Symbols are bound to values in the current environment
+- Self-evaluating expressions are returned
+- All other legal expressions are represented as Scheme lists, called combinations
+
+Logical Special Forms  
+Logical forms may only evaluate some sub-expressions  
+
+Quotation  
+The quote special form evaluates to the quoted expression, which is not evaluated  
+
+### 3.5.2 Environments
+Applying User-Defined Procedures  
+
+To apply a user defined rocedure, create a new frame in which formal parameters are bound to argument values, whose parent is the enve of the procedure  
+Evaluate the body of the procedure in the environment that starts with this new frame  
+
+### 3.5.3 Data as Programs
