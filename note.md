@@ -1246,3 +1246,63 @@ To apply a user defined rocedure, create a new frame in which formal parameters 
 Evaluate the body of the procedure in the environment that starts with this new frame  
 
 ### 3.5.3 Data as Programs
+
+## 4.3 Declarative Programming
+Database Management Systems  
+
+A table is a collection of records, which are rows that have a value for each column  
+
+Declarative Programming  
+
+In declarative languages such as SQL & Prolog:
+- A "program" is description of the desired result
+- The interpreter figures out how to generate the result
+
+In imperative languages such as Python & Scheme:
+- A "program" is a description of computational processes
+- The interpreter carries out execution/evaluation rules
+
+SQL overvies  
+
+The SQL language is an ANSI and ISO standard, but DBMS's implement custom variants  
+- A select statement a new table, either from scratch or by projecting a table
+- A create table statment gives a global name to a table
+- Lots of other statements exist: analyze, delete, explain, insert, replace, update, etc
+- Most of the important action is in the select statement
+- The code for executing select statements fits on a single sheed of paper(next lecture)
+
+### 4.3.1 Tables
+The SQL language is standardized, but most database systems implement some custom variant of the language that is endowed with proprietary features  
+
+### 4.3.2 Select Statements
+
+- Selecting Value Literals  
+
+  A `select` statement always includes a comma-separated list of column descriptions  
+
+  A column description is an expresson, optionally followed by `as` and a column name  
+
+`select [expression] as [name], [expression] as [name];`  
+
+Selecting literals creates a one-row table  
+
+The union of two select statments is a table containing the rows of both of their results  
+
+SQL is often used as an interactive language  
+
+The result of a `select` statement is displayed to the user, but not stored  
+
+A `create table` statement gives the result a name  
+
+`create table [name] as [select stament];`
+ 
+- Select Statements Project Existing Tables  
+
+  A `select` statement can specify an input table using a `from` clause  
+  A subset of the rows of the input table can be selected using a where clause  
+  An ordering over thhe remaining rows can be declared using an `order by` clause  
+  Column descriptions determine how each input row is projected to a result row   
+
+- Arithmetic in Select Expressions  
+  In a select expression, column names evaluate to row values  
+  Arithmetic expressions can combine row values and constants
