@@ -1306,3 +1306,38 @@ A `create table` statement gives the result a name
 - Arithmetic in Select Expressions  
   In a select expression, column names evaluate to row values  
   Arithmetic expressions can combine row values and constants
+
+### 4.3.3 Joins
+
+Joining Tables
+
+**Joining Two Tables**  
+Two tables A&B are joined by a comma to yield all combos of a row from A & a row from B  
+
+
+**Joining a Table with Itself**  
+
+Aliases and Dot Expression  
+
+Two tables may share a column name; dot expressions and aliases disambiguate column values  
+
+`select [columns] from [table] where [condition] order by [order]`
+`[table]` us a cinna-sparated list of table names with optional aliases  
+
+**Joining Multiple Tables**
+
+Multiple tables can be joined to yield all combinations of rows from each  
+
+**Numerical Expressions**  
+
+Expressions can contain function calls and arithmetic operators  
+`select [columns] from [table] where [expression] order by [expression];`  
+
+`[columns]`: `[expression] as [name], [expression] as [name]`    
+
+Combine values: `+`, `-`, `*`, `/`, `%`, `and`, `or`  
+Transform values: `abs`, `round`, `not`, `-`  
+Compare values: `<`, `<=`, `>`, `>=`, `<>`, `!=`, `=`  
+
+**String Expressions**  
+`||` combine two string together  
