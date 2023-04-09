@@ -1341,3 +1341,23 @@ Compare values: `<`, `<=`, `>`, `>=`, `<>`, `!=`, `=`
 
 **String Expressions**  
 `||` combine two string together  
+
+### 4.3.6 Aggregation and Grouping
+Multiple aggregate functions can be applied to the same set of rows by defining more than one column. Only columns that are included by the where clause are considered in the aggreagation.  
+
+**Aggregate Functions**  
+An aggregate function in the `[columns]` clause computes a value from a group of rows  
+
+`distinct [columns]` means the unique one in columns  
+
+**Mixing Aggregate Functions and Single Values**  
+An aggregate function alson selects a row in the table, which may be meaningful  
+
+**Groups**  
+Grouping Rows  
+Rows in a table can be grouped, and aggregation is performed on each group  
+ 
+`select [columns] from [table] group by [expression] habing [expression];`  
+
+The number of groups is the number of unique values of an expression  
+A having clause filters the set of groups that are aggregated  
