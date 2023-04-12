@@ -1342,6 +1342,10 @@ Compare values: `<`, `<=`, `>`, `>=`, `<>`, `!=`, `=`
 **String Expressions**  
 `||` combine two string together  
 
+### 4.3.4 Interpreting SQL
+
+### 4.3.5 Recursive Select Statements
+
 ### 4.3.6 Aggregation and Grouping
 Multiple aggregate functions can be applied to the same set of rows by defining more than one column. Only columns that are included by the where clause are considered in the aggreagation.  
 
@@ -1361,3 +1365,28 @@ Rows in a table can be grouped, and aggregation is performed on each group
 
 The number of groups is the number of unique values of an expression  
 A having clause filters the set of groups that are aggregated  
+
+### More SQL 
+
+**Create Table**
+
+**Drop Table**
+
+**Modifying Table**  
+- Insert  
+To inset into one column:  
+  `INSERT INTO t(column) VALUES (value);`
+TO inset into both columns:  
+  `INSERT INTO t VALUES (value0, value1);`
+
+- Update  
+`UPDATE t SET columnt WHERE;`
+
+- Delete  
+`DELETE FROM t WHERE ;`
+
+SQL Injection Attack  
+`executescript(cmd)` may cause problem if the command was changed by someone  
+use `excute("(?)",[])` to prevent this happen  
+
+Database Connections  
