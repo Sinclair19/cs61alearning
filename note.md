@@ -1390,3 +1390,68 @@ SQL Injection Attack
 use `excute("(?)",[])` to prevent this happen  
 
 Database Connections  
+
+
+## Extension
+### Tail Recursion
+
+Functional Programming
+All functions are pure functions  
+No re-assignment and no mutable data types  
+Name-value bingdings are permanent  
+Advantages of functional programming:  
+- The value of an expression is independent of the order in which sub-expressions are evaluated
+- sub-expressions can safely be evaluated in parallel or on demand (lazily)
+- Referential transparency: The value of an expression does not change when we substitute one of its subexpression with the value of that subexpression
+
+### Tail Calls  
+A procedure call that has not yet returned is active.  
+Some procedure calls are tail calls  
+A Scheme interpreter should support an unbounded number of active tail calls using only a constant of space  
+A tail call is a call expression in a tail context:
+- The last body sub-expression in a lambda expression
+- Sub-expressions 2 & 3 in a tail context if expression
+- All non-predicate sub-expression in a tail context `cond`
+- The last sub-expression in a tail context `and` or `or`
+- The last sub-expression in a tail context `begin`
+
+Eval with Tail Call Optimization  
+The return value of the tail call is the return value of the current procedure call  
+Therefore, tail calls shouldn't increase the environment size  
+
+### Map and reduce  
+#### Reduce  
+
+```scheme
+(define (reduce procedure s start)
+    (if (null? s) start
+        (reduce procedure (cdr s) (procedure start (car s)))))
+```
+
+Recursive call is a tail call  
+Other calls are not; constant space depends on wether `procedure` requires constan space  
+
+#### Map  
+- normal way 
+```scheme
+(define (map procedure s)
+        (if (null? s) nil
+            (cons (procedre (car s) (map procedure (cdr s))))))
+```
+- tail recursive way  
+```scheme
+(define (map procedure s)
+        (define (map-reverse s m)
+                (if (null? s) m 
+                    (map-reverse (cdr s)
+                                 (cons (procedure (car s)) m))))
+        (reverse (map-reverse s nil)))
+
+(define (reverse s)
+        (define (reverse-iter s r)
+                (if (null? s) r
+                    (reverse-iter (cdr s)
+                                  (cons (car s) r))))
+        (reverse-iter s nil))
+```
+
