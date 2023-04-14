@@ -1454,4 +1454,14 @@ Other calls are not; constant space depends on wether `procedure` requires const
                                   (cons (car s) r))))
         (reverse-iter s nil))
 ```
+### Macros
+Macros Perform Code Transformations  
+A macro is an operation performed on the source code of a program before evaluation  
+Macros exist in mnay languages, but are easiest to define correctly in a language like Lisp  
+Scheme has a define-macro special from that defines a source code transformation  
+
+Evaluation procedure of a macro call expression:
+- Evaluate the operator sub-expression, which evaluates to a macro
+- Call the macro procedure on the operand expressions without evaluating them first  
+- Evaluate the expression returned from the macro procedure
 
