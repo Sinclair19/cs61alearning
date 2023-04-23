@@ -123,3 +123,81 @@ def widest_level(t):
         levels.append([t.label for t in x])
         x = sum([t.branches for t in x], [])
     return max(levels, key=len)
+
+class Emotion:
+    num = 0
+    def __init__(self):
+        Emotion.num += 1
+
+    def feeling(self, other):
+        if self.power == other.power:
+            print('Together')
+        elif self.power < other.power:
+            other.catchphrase()
+            self.catchphrase()
+        else:
+            self.catchphrase()
+            other.catchphrase()
+
+
+class Joy(Emotion):
+    power = 5
+    def catchphrase(self):
+        print('Think positive thoughts')
+
+class Sadness(Emotion):
+    power = 5
+    def catchphrase(self):
+        print('I\'m positive you will get lost')
+
+
+def remove_duplicates(lnk):
+    """
+    >>> lnk = Link(1, Link(1, Link(1, Link(1, Link(5)))))
+    >>> remove_duplicates(lnk)
+    >>> lnk
+    Link(1, Link(5))
+    """
+    if lnk == Link.empty or lnk.rest == Link.empty:
+        return
+    if lnk.first == lnk.rest.first:
+        lnk.rest = lnk.rest.rest
+        remove_duplicates(lnk)
+    else:
+        remove_duplicates(lnk.rest)
+
+def repeated(f):
+    """
+    >>> double = lambda x: 2 * x
+    >>> funcs = repeated(double)
+    >>> identity = next(funcs)
+    >>> double = next(funcs)
+    >>> quad = next(funcs)
+    >>> oct = next(funcs)
+    >>> quad(1)
+    4
+    >>> oct(1)
+    8
+    >>> [g(1) for _, g in
+    ... zip(range(5), repeated(lambda x: 2 * x))]
+    [1, 2, 4, 8, 16]
+    """
+    g = lambda x: x
+    while True:
+        yield g
+        g = (lambda y: lambda x: f(y(x)))(g)
+
+from operator import add, mul
+def accumulate(iterable, f):
+    """
+    >>> list(accumulate([1, 2, 3, 4, 5], add))
+    [1, 3, 6, 10, 15]
+    >>> list(accumulate([1, 2, 3, 4, 5], mul))
+    [1, 2, 6, 24, 120]
+    """
+    it = iter(iterable)
+    total = next(it)
+    yield total
+    for elemnet in it:
+        total = f(total, elemnet)
+        yield total
